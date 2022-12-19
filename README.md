@@ -1,3 +1,3 @@
 # social-media-app
 
-demo: nonchalant-meeting.surge.sh 
+demo: https://nonchalant-meeting.surge.sh/ 
