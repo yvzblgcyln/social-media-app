@@ -1,0 +1,77 @@
+@import "../../style.scss";
+.rightbar {
+  @include themify($themes) {
+    background-color: themed("bgSoft");
+    color: themed("textColor");
+    flex: 3;
+    position: sticky;
+    top: 62px;
+    height: calc(100vh - 62px);
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .container {
+      margin: 10px;
+
+      .item {
+        border-radius: 5px;
+        padding: 15px;
+        background-color: themed("bg");
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        span {
+          font-weight: bold;
+          font-size: smaller;
+        }
+        .userinfo {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 10px;
+          .user {
+            display: flex;
+            align-items: center;
+            position: relative;
+            .online {
+              width: 13px;
+              height: 13px;
+              background-color: rgb(51, 210, 51);
+              border-radius: 50%;
+              position: absolute;
+              top: 0;
+              left: 30px;
+            }
+            span {
+              font-weight: 600;
+              font-size: medium;
+              margin-left: 5px;
+            }
+            img {
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              border-radius: 50%;
+            }
+          }
+          .buttons {
+            button {
+              border: none;
+              padding: 5px;
+              margin: 5px;
+              color: white;
+              border-radius: 5px;
+              &:first-child {
+                background-color: #5f70bc;
+              }
+              &:last-child {
+                background-color: #bf2f2a;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

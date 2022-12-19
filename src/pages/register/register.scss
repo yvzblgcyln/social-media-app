@@ -1,0 +1,84 @@
+.register {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(218, 200, 200, 0.5),
+    rgba(38, 33, 175, 0.5)
+  ); //<<
+  .card {
+    display: flex;
+    width: 50%;
+    border-radius: 10px;
+    overflow: hidden; //<<
+    flex-direction: row-reverse;
+
+    .left {
+      padding: 0 20px 50px 20px;
+      color: white;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px; //<<
+      background: linear-gradient(rgba(170, 149, 149, 0.5), rgba(38, 33, 175, 0.5)),
+        url("https://images.pexels.com/photos/2672979/pexels-photo-2672979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")
+          center; //<<
+      background-size: cover; //<<
+
+      h1 {
+        font-size: 100px;
+        line-height: 0.8;
+      }
+      p {
+        font-size: 20px;
+      }
+      span {
+        font-size: 10px;
+      }
+      button {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        color: rebeccapurple;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    .right {
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      gap: 50px;
+      background-color: white;
+
+      h1 {
+        color: rgb(82, 72, 72);
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        input {
+          border: none;
+          border-bottom: 1px solid;
+          padding: 20px 10px;
+        }
+        button {
+          width: 50%;
+          padding: 10px;
+          border: none;
+          background-color: #938eef;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.stories {
+  display: flex;
+  gap: 15px;
+  .story {
+    flex: 1;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    margin-bottom: 30px;
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    button {
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
+      border: none;
+      background-color: aquamarine;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      position: absolute;
+      bottom: 20px;
+      left: 40px;
+      color: white;
+    }
+  }
+}
