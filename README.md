@@ -5,7 +5,7 @@ Full responsive social media app. You have login/register pages.
 - To go a profile click on a user who sent post. 
 - You can change theme
 
-- What i use:
+## What i use:
 - useContext
 - routes
 
