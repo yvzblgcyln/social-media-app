@@ -1,5 +1,5 @@
 # social-media-app
-Full responsive social media app with login/register pages. 
+Social media app with login/register pages. 
 - Press login button to enter home page. 
 - You can see comments in the posts. 
 - You can visit profiles by clicking on a user who sent post. 
