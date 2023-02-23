@@ -1,45 +1,48 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CurrentUserContext from "../../context/authContext";
+import { Link } from "react-router-dom";
 import "./comments.scss";
 
-const Comments = () => {
+const Comments = ({ comments, setCommentCount, commentCount }) => {
+  const [comment, setComment] = useState("");
+  const [postComments, setPostComments] = useState(comments);
   const { currentUser } = useContext(CurrentUserContext);
-  //Temporary
-  const comments = [
-    {
-      id: 1,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
-      name: "John Doe",
-      userId: 1,
-      profilePicture:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nequeaspernatur ullam aperiam",
-      name: "Jane Doe",
-      userId: 2,
-      profilePicture:
-        "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    },
-  ];
+
+  const handleComment = () => {
+    const commentObject = {
+      id: 5,
+      name: currentUser.name,
+      profilePicture: currentUser.profilePic,
+      desc: comment,
+      time: "now",
+    };
+    const temp = [...postComments, commentObject];
+    setPostComments(temp);
+    setCommentCount(commentCount + 1);
+    setComment("");
+  };
+
   return (
     <div className="comments">
       <div className="write">
         <img src={currentUser.profilePic} alt="" />
-        <input type="text" placeholder="write a comment" />
-        <button>Send</button>
+        <input type="text" placeholder="write a comment" value={comment} onChange={(e) => setComment(e.target.value)} />
+        <button onClick={handleComment}>Send</button>
       </div>
-      {comments.map((comment) => (
-        <div className="comment">
-          <img src={comment.profilePicture} alt="" />
-          <div className="info">
-            <span>{comment.name}</span>
-            <p>{comment.desc}</p>
+      {postComments
+        .map((comment, index) => (
+          <div className="comment" key={index}>
+            <img src={comment.profilePicture} alt="" />
+            <div className="info">
+              <Link to={`/profile/${index}`} style={{ color: "inherit", textDecoration: "none" }}>
+                <span>{comment.name}</span>
+              </Link>
+              <p>{comment.desc}</p>
+            </div>
+            <span className="date">{comment.time}</span>
           </div>
-          <span className="date">1 hour ago</span>
-        </div>
-      ))}
+        ))
+        .reverse()}
     </div>
   );
 };

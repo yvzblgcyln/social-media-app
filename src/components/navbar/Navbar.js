@@ -7,25 +7,29 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link } from "@mui/material";
-import { useContext } from "react";
 import DarkModeContext from "../../context/DarkModeContext";
 import CurrentUserContext from "../../context/authContext";
+import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { darkMode, swapDarkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(CurrentUserContext);
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="navbar">
       <div className="left">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <span>YBC Social</span>
         </Link>
-        <HomeOutlinedIcon />
+        <Link to="/" style={{ color: "inherit", marginTop: "8px" }}>
+          <HomeOutlinedIcon />
+        </Link>
         {darkMode ? (
-          <DarkModeOutlinedIcon onClick={swapDarkMode} />
+          <DarkModeOutlinedIcon onClick={swapDarkMode} className="icon" />
         ) : (
-          <WbSunnyOutlinedIcon onClick={swapDarkMode} />
+          <WbSunnyOutlinedIcon onClick={swapDarkMode} className="icon" />
         )}
         <GridViewOutlinedIcon />
         <div className="search">
@@ -40,6 +44,21 @@ function Navbar() {
         <div className="user">
           <img src={currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
+          <ChangeHistoryIcon
+            className="icon"
+            style={{ fontSize: "10px", transform: menuOpen ? "rotate(0deg)" : "rotate(180deg)" }}
+            onClick={() => setMenuOpen((prev) => !prev)}
+          />
+          {menuOpen && (
+            <div className="logout">
+              <Link to="/profile/1" onClick={() => setMenuOpen(false)}>
+                Profile
+              </Link>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Logout
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

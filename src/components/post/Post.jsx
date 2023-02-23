@@ -10,10 +10,14 @@ import { useState } from "react";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.likes);
+  const [commentCount, setCommentCount] = useState(post.comments.length);
 
-  //TEMPORARY
-  const liked = false;
-
+  const handleLike = () => {
+    setLiked(!liked);
+    liked ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1);
+  };
   return (
     <div className="post">
       <div className="container">
@@ -21,13 +25,10 @@ const Post = ({ post }) => {
           <div className="userInfo">
             <img src={post.profilePic} alt="" />
             <div className="details">
-              <Link
-                to={`/profile/${post.userId}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
+              <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span className="name">{post.name}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{post.time}</span>
             </div>
           </div>
           <MoreHorizIcon />
@@ -37,20 +38,22 @@ const Post = ({ post }) => {
           <img src={post.img} alt="" />
         </div>
         <div className="info">
-          <div className="item">
+          <div className="item" onClick={handleLike}>
             {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-            12 Likes
+            {likeCount} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            {commentCount} Comments
           </div>
           <div className="item">
             <ShareOutlinedIcon />
             Share
           </div>
         </div>
-        {commentOpen && <Comments />}
+        {commentOpen && (
+          <Comments comments={post.comments} commentCount={commentCount} setCommentCount={setCommentCount} />
+        )}
       </div>
     </div>
   );

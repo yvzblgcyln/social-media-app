@@ -28,7 +28,8 @@ function Login() {
             <Link to="/">
               <button onClick={login}>Login</button>
             </Link>
-            <span> ----- press login to go home/ or you can go register page</span>
+            <span style={{ color: "red", fontWeight: "700" }}> &uarr; click login to go home page</span>
+            <span style={{ color: "red", fontWeight: "700" }}> &larr; or you can go register page</span>
           </div>
         </div>
       </div>

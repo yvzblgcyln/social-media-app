@@ -11,6 +11,9 @@
     background-color: themed("bg");
     color: themed("textColor");
     z-index: 999;
+    .icon {
+      cursor: pointer;
+    }
     .left {
       display: flex;
       align-items: center;
@@ -28,7 +31,10 @@
         border-radius: 5px;
         gap: 10px;
         padding-left: 5px;
+        outline: 0;
+        padding: 4px;
         input {
+          outline: none;
           border: none;
           width: 100%;
           background-color: themed("bg");
@@ -46,6 +52,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        position: relative;
         img {
           width: 30px;
           height: 30px;
@@ -55,6 +62,40 @@
         span {
           font-weight: bold;
         }
+        .logout {
+          position: absolute;
+          background-color: themed("bgSoft");
+          top: 30px;
+          right: 0;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+@include tablet {
+  .search {
+    display: none !important;
+  }
+  .left {
+    gap: 15px !important;
+    a:first-child {
+      display: none !important;
+    }
+  }
+  .right {
+    gap: 15px !important;
+  }
+  .right {
+    .user {
+      span {
+        display: none !important;
       }
     }
   }
